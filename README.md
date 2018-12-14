@@ -26,6 +26,8 @@ Follow [these steps](https://developers.google.com/admin-sdk/directory/v1/quicks
 
 Here is a sample output of running the script.
 
+The first time you run this script it will open your browser and ask you to sign in. Make sure you sign in with an account that has admin privileges to read all groups in your customer. Once you sign in and grant your script access you can close your browser and return to your terminal. This stores a file named `token.json` and you will not need to authenticate again as long as that file is in your directory.
+
 ```
 python run.py
 some-group@yourdomain.com,Yes
