@@ -4,6 +4,14 @@ This script uses the AdminSDK to list all groups which contain "all users in my 
 
 ## Prerequisites
 
+Clone this repository.
+
+```
+mkdir groups-with-all-users-in-customer
+cd groups-with-all-users-in-customer
+git clone https://github.com/jmathai-google/groups-with-all-users-in-customer.git ./
+```
+
 You'll need python 2.7 installed to run this script. It's recommended that you run this command inside of a `virtualenv`.
 
 ```
