@@ -52,7 +52,6 @@ def main():
         if nextPageToken is None: 
             # We've reached the last page and there are no more groups
             break
-        break
 
 def membership_has_all_users(service, group):
     # Call the AdminSDK members.list API to get all members and paginate
