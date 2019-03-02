@@ -1,15 +1,15 @@
-# AdminSDK, List Groups With All Users In Customer
+# AdminSDK, List All Groups In Customer
 
-This script uses the AdminSDK to list all groups which contain "all users in my organization". View the [support article](https://support.google.com/a/answer/6191469?hl=en&visit_id=636804153881207464-2829703435&rd=1) to learn more about this feature.
+This script uses the AdminSDK to list all groups in your customer.
 
 ## Prerequisites
 
 Clone this repository.
 
 ```
-mkdir groups-with-all-users-in-customer
-cd groups-with-all-users-in-customer
-git clone https://github.com/jmathai-google/groups-with-all-users-in-customer.git ./
+mkdir all-groups-in-customer
+cd all-groups-in-customer
+git clone https://github.com/jmathai-google/all-groups-in-customer.git ./
 ```
 
 You'll need python 2.7 installed to run this script. It's recommended that you run this command inside of a `virtualenv`.
@@ -30,14 +30,16 @@ The first time you run this script it will open your browser and ask you to sign
 
 ```
 python run.py
-some-group@yourdomain.com,Yes
-some-other-group@yourdomain.com,No
-mygroup1@yourdomain.com,No
-mygroup2@yourdomain.com,No
+some-group@yourdomain.com
+some-other-group@yourdomain.com
+mygroup1@yourdomain.com
+mygroup2@yourdomain.com
 ....
-mygroup1000@yourdomain.com,Yes
+mygroup1000@yourdomain.com
+
+# If you'd like to count the total number of groups you can run the following command.
+python run.py | wc -l
+      18
 ```
 
-Every row with the second column as `Yes` contains all users in your organization as a member.
-
-You may want to call `python run.py > groups-with-all-users.csv` to import it into a spreadsheet.
+You may want to call `python run.py > all-groups-in-customer.csv` to import it into a spreadsheet.

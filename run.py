@@ -1,18 +1,12 @@
-""" It's possible to add all users in your organization to a group.
-This is a feature which you can find in the Admin console group management.
-When adding all users it creates a single member with type="CUSTOMER" in the group.
+""" The groups.list API returns a paginated result which makes it possible
+    to list all the groups in a customer.
 
-This script will brute force through the memberships to tell you which groups
-    have all users as a member.
-
-If you have a large number of groups or memberships then you may need to 
+    If you have a large number of groups then you may need to 
     make changes to stay within your quota.
 
-Running this script will output 1 row for each group to stdout.
-Each row contains 3 values separated by commas.
-{group email},{has all users 'Yes' or 'No'}
+    Running this script will output 1 row for each group to stdout.
 
-Please follow the steps in the Readme file to complete the authorization 
+    Please follow the steps in the Readme file to complete the authorization 
     requirements needed to run this script.
 """
 
@@ -45,34 +39,12 @@ def main():
         groups = results.get('groups', [])
 
         for group in groups:
-            has_all_users = membership_has_all_users(service, group)
-            print(u'{0},{1}'.format(group['email'], 'Yes' if has_all_users else 'No'))
+            print(u'{0}'.format(group['email']))
 
         nextPageToken = results.get('nextPageToken')
         if nextPageToken is None: 
             # We've reached the last page and there are no more groups
             break
-
-def membership_has_all_users(service, group):
-    # Call the AdminSDK members.list API to get all members and paginate
-    #   through the results.
-    # Returns True once it finds type="CUSTOMER" else False
-    nextPageToken = None
-    while True:
-        results = service.members().list(groupKey=group['id'],
-                                        maxResults=200,
-                                        pageToken=nextPageToken).execute()
-        members = results.get('members', [])
-        for member in members:
-            if member['type'] == 'CUSTOMER':
-                return True
-
-        nextPageToken = results.get('nextPageToken')
-        if nextPageToken is None: 
-            # We've reached the last page and there are no more memberships
-            break
-
-    return False
 
 if __name__ == '__main__':
     main()
